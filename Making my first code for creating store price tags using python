@@ -1,0 +1,51 @@
+"""
+Created on Tue Sep  5 18:13:35 2023
+
+@author: Joshua
+"""
+
+#function for name of device
+
+from reportlab.pdfgen import canvas
+from reportlab.lib.units import inch
+
+my_path='C:\\Users\\joshua\\OneDrive\\Desktop\\my_new_pdf.pdf'
+
+c=canvas.Canvas(my_path)
+c.translate(inch,inch)
+
+brands=[['Acer Nitro', 1234] , ['Lenovo IdeaPad', 2345] , ['Dell Inspiron',3456] , ['Microsoft Surcafe Pro',4567] , ['HP-Victus',5678] , ['Asus-Zenbook',6789]]
+brand_price=[['R16999', 1234] , ['R11999', 2345] , ['R25999',3456] , ['R27999',4567] , ['R18999',5678] , ['R29999',6789]]
+brand_pic=[['C:\\Users\\joshua\\OneDrive\\Desktop\\Creating_Pricetags\\band_pics\\acer.jpg', 1234] , ['C:\\Users\\joshua\\OneDrive\\Desktop\\Creating_Pricetags\\band_pics\\lenovo.webp', 2345] , ['C:\\Users\\joshua\\OneDrive\\Desktop\\Creating_Pricetags\\band_pics\\dell.webp',3456] , ['C:\\Users\\joshua\\OneDrive\\Desktop\\Creating_Pricetags\\band_pics\\microsoft.jpg',4567] , ['C:\\Users\\joshua\\OneDrive\\Desktop\\Creating_Pricetags\\band_pics\\HP.jpg',5678] , ['C:\\Users\\joshua\\OneDrive\\Desktop\\Creating_Pricetags\\band_pics\\asus.webp',6789]]
+brand_des=[
+[['>Windows 11 Home','>15.6-inch FHD IPS 144Hz Display','>8GB RAM and 512GB SSD Storage','>Intel® Core™ i5 11400H Processor','>Nvidia GeForce GTX 1650 4GB GDDR5','>3 Year warranty (upon registration)'],1234],
+[['>Windows 11 home','15.6-Inch FHD display','>8GB RAM and 512GB SSD storage','>Intel® Core™ i5 1135G7 Processor','>Intel® Iris® Xᵉ Graphics','>3 Year warranty (upon registration)'],2345],
+[['>Windows 11 Home','>15.6 Inch FHD 120Hz display','>16GB RAM and 512GB SSD storage','>Intel® Core™ i7 12700H Processor','>Nvidia GeForce RTX 3050 4GB GDDR6','>Dual air-intake and four exhausts','>3 Year warranty (upon registration)'],3456],
+[['>Windows 11 home','>13-Inch pixelsense flow touch display','>8GB RAM and 256GB SSD storage','>Intel® Core™ i5 1235U Processor','>Intel® Iris® Xᵉ Graphics','>Slim pen 2 sold separately','>3 Year warranty (upon registration)'],4567],
+[['>Windows 11 Home','>15.6-inch FHD IPS display','>8GB RAM and 512GB SSD storage','>AMD® Ryzen™ 5 5600H Processor','>NVIDIA GeForce GTX 1650 4GB GDDR6','>Audio by B&O with Dual speakers','>Full-size backlit keyboard with numeric','>3 Year warranty (upon registration)'],5678],
+[['>Windows 11 Home','>14-inch 2.8K OLED Touch Display','>16GB RAM and 1TB SSD Storage','>Intel® Core™ i7 1360P Processor','>Intel® Iris® Xe Graphics','>Includes sleeve and Stylus Pen','>3 Year Warranty (Upon Registration)'],6789]
+]
+barcode=int(input('scan barcode:'))
+
+for i in range(len(brands)):
+    if barcode==brands[i][1]:
+        e=('Product Name: '+brands[i][0])
+        c.drawString(0,277,e)
+        f=(brand_pic[i][0])
+        c.drawImage(f,0,297,80,80)
+        m=(brand_price[i][0])
+        c.drawString(0,87,m)
+
+c.drawString(0,257,'Product Description:')
+h=257
+
+for k in range(len(brand_des)):
+    if barcode==brand_des[k][1]:
+        for l in range(len(brand_des)):
+            if brand_des[0][0][l]==brand_des[0][0][l]:
+                h=h-20
+                g=brand_des[0][0][l]
+                c.drawString(7,h,g)
+
+c.showPage()
+c.save()
